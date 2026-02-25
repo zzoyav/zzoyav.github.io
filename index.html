@@ -49,16 +49,201 @@
             transition: all 0.3s ease;
         }
 
-        /* Левое меню */
+        /* Левое меню - ОБНОВЛЕННОЕ */
         .lessons-sidebar {
             grid-column: 1;
             grid-row: 1 / span 2;
-            background-color: var(--color-blue-bell);
-            color: var(--color-text);
+            background: linear-gradient(135deg, #584de1 0%, #AAAEE1 100%);
+            color: white;
             padding: 20px;
             overflow-y: auto;
             transition: transform 0.3s ease;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+        }
+
+        .lessons-sidebar h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        /* Заголовок модуля */
+        .module {
+            margin-bottom: 25px;
+        }
+        
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 0;
+            border-bottom: 2px solid #e68444;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .module-header:hover {
+            opacity: 0.9;
+        }
+        
+        .module-header h3 {
+            font-size: 1rem;
+            color: white;
+            flex: 1;
+            margin: 0;
+        }
+        
+        .module-badge {
+            background-color: #e68444;
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+        
+        .module-content {
+            padding-left: 10px;
+        }
+        
+        .module-content.collapsed {
+            display: none;
+        }
+
+        /* Список уроков */
+        .lessons-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .lessons-list li {
+            margin-bottom: 8px;
+        }
+        
+        .lesson-number {
+            display: inline-block;
+            width: 26px;
+            height: 26px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 26px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+
+        .lessons-list a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .lessons-list a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        .lessons-list a:hover .lesson-number {
+            background-color: #e68444;
+            color: white;
+        }
+
+        .lessons-list a.active {
+            background: linear-gradient(135deg, #e68444 0%, #584de1 100%);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .lessons-list a.active .lesson-number {
+            background-color: white;
+            color: #584de1;
+        }
+
+        /* Иконка замка для заблокированных уроков */
+        .lock-icon {
+            margin-left: auto;
+            font-size: 14px;
+            color: #e68444;
+        }
+
+        /* Стили для заблокированных уроков */
+        .lessons-list a[style*="pointer-events: none"] {
+            opacity: 0.5;
+            position: relative;
+        }
+
+        .lessons-list a[style*="pointer-events: none"]:hover::after {
+            content: attr(title);
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background-color: #e68444;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+
+        /* Прогресс */
+        .progress-container {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .progress-bar-bg {
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #584de1, #e68444);
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 4px;
+        }
+
+        /* Кнопка сброса */
+        .reset-btn {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .reset-btn button {
+            background: none;
+            border: 1px solid #e68444;
+            color: #e68444;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .reset-btn button:hover {
+            background-color: #e68444;
+            color: white;
         }
 
         /* Кнопка для открытия меню на мобильных */
@@ -116,113 +301,6 @@
             overflow-y: auto;
         }
 
-        /* Меню модулей */
-        .module {
-            margin-bottom: 25px;
-        }
-        
-        .module-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 0;
-            border-bottom: 2px solid var(--color-primary);
-            cursor: pointer;
-        }
-        
-        .module-header h3 {
-            font-size: 1rem;
-            color: var(--color-text);
-            flex: 1;
-        }
-        
-        .module-badge {
-            background-color: var(--color-primary);
-            color: white;
-            font-size: 0.7rem;
-            padding: 2px 6px;
-            border-radius: 12px;
-        }
-        
-        .module-content {
-            padding-left: 10px;
-        }
-        
-        .module-content.collapsed {
-            display: none;
-        }
-        
-        .lessons-list {
-            list-style: none;
-        }
-
-        .lessons-list li {
-            margin-bottom: 8px;
-        }
-        
-        .lesson-number {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            background-color: var(--color-turquoise);
-            color: var(--color-text);
-            border-radius: 4px;
-            text-align: center;
-            line-height: 24px;
-            font-size: 0.8rem;
-            margin-right: 8px;
-        }
-
-        .lessons-list a {
-            color: var(--color-text);
-            text-decoration: none;
-            padding: 6px 8px;
-            display: flex;
-            align-items: center;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-
-        .lessons-list a:hover {
-            background-color: var(--color-turquoise);
-        }
-
-        .lessons-list a.active {
-            background-color: var(--color-primary);
-            color: white;
-        }
-        
-        .lessons-list a.active .lesson-number {
-            background-color: white;
-            color: var(--color-primary);
-        }
-
-        /* Стили для заблокированных уроков */
-        .lessons-list a[style*="pointer-events: none"] {
-            opacity: 0.5;
-            position: relative;
-        }
-
-        .lessons-list a[style*="pointer-events: none"]:hover::after {
-            content: attr(title);
-            position: absolute;
-            left: 0;
-            top: 100%;
-            background-color: var(--color-orange);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            white-space: nowrap;
-            z-index: 1000;
-        }
-
-        .lock-icon {
-            margin-left: auto;
-            font-size: 14px;
-            color: var(--color-orange);
-        }
-
         /* Навигация */
         .nav-menu {
             display: flex;
@@ -259,6 +337,16 @@
             display: block;
         }
 
+        .content-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--color-turquoise);
+        }
+
+        .content-header h2 {
+            color: var(--color-text);
+        }
+
         .code-block {
             background-color: #1e1e1e;
             color: #d4d4d4;
@@ -293,35 +381,6 @@
 
         .task-content {
             padding: 20px;
-        }
-
-        /* Прогресс */
-        .progress-container {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid var(--color-primary);
-        }
-        
-        .progress-stats {
-            display: flex;
-            justify-content: space-between;
-            color: var(--color-text);
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
-        
-        .progress-bar-bg {
-            height: 6px;
-            background-color: var(--color-turquoise);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        
-        .progress-bar-fill {
-            height: 100%;
-            background-color: var(--color-primary);
-            width: 0%;
-            transition: width 0.3s;
         }
 
         /* Поля для кода */
@@ -417,27 +476,6 @@
 
         .test-question label:hover {
             color: var(--color-primary);
-        }
-
-        .reset-btn {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .reset-btn button {
-            background: none;
-            border: 1px solid var(--color-orange);
-            color: var(--color-orange);
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s;
-        }
-
-        .reset-btn button:hover {
-            background-color: var(--color-orange);
-            color: white;
         }
 
         /* Стили для модальных окон */
@@ -573,7 +611,7 @@
                 width: 280px;
                 height: 100vh;
                 z-index: 99;
-                box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+                background: linear-gradient(135deg, #584de1 0%, #AAAEE1 100%);
             }
 
             .lessons-sidebar.open {
@@ -722,9 +760,9 @@
     <div class="menu-overlay" onclick="closeMobileMenu()"></div>
 
     <div class="container">
-        <!-- Левое меню -->
+        <!-- Левое меню - с обновленным дизайном -->
         <aside class="lessons-sidebar" id="mobile-menu">
-            <h3 style="margin-bottom: 20px;">🐍 Python для подростков</h3>
+            <h3>🐍 Python для подростков</h3>
             
             <!-- Модуль 1 -->
             <div class="module">
@@ -736,7 +774,7 @@
                 <div class="module-content">
                     <ul class="lessons-list" id="lessons-list-module1">
                         <!-- Уроки будут загружены динамически -->
-                        <li style="text-align: center; color: var(--color-text);">Загрузка уроков...</li>
+                        <li style="text-align: center; color: rgba(255,255,255,0.7);">Загрузка уроков...</li>
                     </ul>
                 </div>
             </div>
@@ -994,8 +1032,15 @@
         // Загрузка списка уроков
         async function loadLessonsList() {
             try {
+                console.log("Загрузка списка уроков...");
                 const response = await fetch('lessons/lessons.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 const lessonsMeta = await response.json();
+                console.log("Уроки загружены:", lessonsMeta);
                 
                 const module1List = document.getElementById('lessons-list-module1');
                 module1List.innerHTML = '';
@@ -1035,7 +1080,12 @@
 
             } catch (error) {
                 console.error("Ошибка загрузки списка уроков:", error);
-                document.getElementById('lessons-list-module1').innerHTML = '<li style="color: red;">Ошибка загрузки уроков</li>';
+                document.getElementById('lessons-list-module1').innerHTML = `
+                    <li style="color: #ff9999; text-align: center;">
+                        ❌ Ошибка загрузки уроков<br>
+                        <small>Убедитесь, что папка lessons существует</small>
+                    </li>
+                `;
             }
         }
 
@@ -1047,11 +1097,19 @@
             }
 
             try {
+                console.log(`Загрузка урока ${lessonId}...`);
+                
                 // Проверяем кэш
                 if (!lessonsCache[lessonId]) {
                     const response = await fetch(`lessons/lesson${lessonId}.json`);
+                    
+                    if (!response.ok) {
+                        throw new Error(`Урок ${lessonId} не найден (${response.status})`);
+                    }
+                    
                     const lessonData = await response.json();
                     lessonsCache[lessonId] = lessonData;
+                    console.log(`Урок ${lessonId} загружен:`, lessonData.title);
                 }
 
                 const lesson = lessonsCache[lessonId];
@@ -1064,26 +1122,45 @@
                 document.getElementById('theory-body').innerHTML = lesson.theory;
                 
                 let practiceHTML = lesson.practice;
-                if (lesson.test) {
+                if (lesson.test && lesson.test.length > 0) {
                     practiceHTML += createTestHTML(lessonId, lesson.test);
                 }
                 document.getElementById('practice-body').innerHTML = practiceHTML;
                 
                 // Обновляем активный пункт меню
                 document.querySelectorAll('.lesson-link').forEach(l => l.classList.remove('active'));
-                document.querySelector(`[data-lesson-id="${lessonId}"]`).classList.add('active');
+                const activeLink = document.querySelector(`[data-lesson-id="${lessonId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
                 
                 // Обновляем прогресс
                 const completedCount = Object.keys(testResults).length;
                 document.getElementById('progress-text').innerHTML = completedCount + '/30';
                 document.getElementById('progress-bar').style.width = (completedCount / 30 * 100) + '%';
                 
+                updateLessonAccess(lessonId);
                 switchTab('theory');
                 closeMobileMenu();
 
             } catch (error) {
                 console.error("Ошибка загрузки урока:", error);
-                alert('Не удалось загрузить урок. Проверьте подключение к интернету.');
+                
+                // Показываем понятное сообщение об ошибке
+                const errorMessage = `
+                    <div style="text-align: center; padding: 40px; color: #e74c3c;">
+                        <h3>❌ Не удалось загрузить урок</h3>
+                        <p>${error.message}</p>
+                        <p style="margin-top: 20px; font-size: 14px; color: #666;">
+                            Проверьте:<br>
+                            1. Существует ли папка "lessons"<br>
+                            2. Есть ли файл lesson${lessonId}.json в этой папке
+                        </p>
+                    </div>
+                `;
+                
+                document.getElementById('theory-body').innerHTML = errorMessage;
+                document.getElementById('practice-body').innerHTML = errorMessage;
             }
         }
 
